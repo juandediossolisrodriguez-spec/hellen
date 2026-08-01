@@ -1,0 +1,1743 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap');
+
+
+/* =========================================
+   CONFIGURACIÓN GENERAL
+========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+body {
+    background: #12070d;
+    color: #fff5f7;
+    font-family: "Montserrat", sans-serif;
+    overflow-x: hidden;
+}
+
+
+button {
+    font-family: inherit;
+}
+
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+
+.oculto {
+    display: none !important;
+}
+
+
+.ocultar {
+    display: none !important;
+}
+
+
+/* =========================================
+   PANTALLA DE CONTRASEÑA
+========================================= */
+
+.pantalla-privada {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 99999;
+
+    width: 100%;
+    min-height: 100vh;
+    min-height: 100svh;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+
+    padding: 30px;
+
+    background:
+        radial-gradient(
+            circle at 50% 30%,
+            #5b1c39 0%,
+            #2a0d1b 35%,
+            #12070d 75%
+        );
+
+    overflow: hidden;
+
+    animation: aparecer 1s ease;
+}
+
+
+.pantalla-privada::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 500px;
+    height: 500px;
+
+    border-radius: 50%;
+
+    background: rgba(255, 90, 140, 0.08);
+
+    filter: blur(80px);
+
+    pointer-events: none;
+
+}
+
+
+.privada-corazon {
+
+    position: relative;
+
+    font-size: 65px;
+
+    margin-bottom: 18px;
+
+    animation: latido 1.6s infinite;
+
+}
+
+
+.pantalla-privada > span {
+
+    position: relative;
+
+    color: #dba0b3;
+
+    font-size: 11px;
+
+    letter-spacing: 4px;
+
+    margin-bottom: 12px;
+
+}
+
+
+.pantalla-privada h1 {
+
+    position: relative;
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: clamp(60px, 13vw, 105px);
+
+    font-weight: 500;
+
+    line-height: .9;
+
+    margin-bottom: 15px;
+
+}
+
+
+.pantalla-privada > p {
+
+    position: relative;
+
+    color: #d7b8c3;
+
+    max-width: 390px;
+
+    line-height: 1.7;
+
+}
+
+
+.candado {
+
+    position: relative;
+
+    font-size: 34px;
+
+    margin: 25px 0 15px;
+
+}
+
+
+#password {
+
+    position: relative;
+
+    width: min(330px, 90vw);
+
+    height: 52px;
+
+    padding: 0 22px;
+
+    border-radius: 50px;
+
+    border: 1px solid rgba(255, 180, 200, .25);
+
+    outline: none;
+
+    background: rgba(255,255,255,.08);
+
+    backdrop-filter: blur(10px);
+
+    color: white;
+
+    text-align: center;
+
+    font-size: 15px;
+
+}
+
+
+#password::placeholder {
+
+    color: #a98793;
+
+}
+
+
+#btnDesbloquear {
+
+    position: relative;
+
+    margin-top: 15px;
+
+    min-width: 210px;
+
+    padding: 15px 25px;
+
+    border: none;
+
+    border-radius: 50px;
+
+    background: linear-gradient(
+        135deg,
+        #c74d76,
+        #e06b91
+    );
+
+    color: white;
+
+    font-size: 14px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 10px 30px rgba(190, 60, 105, .25);
+
+    transition: .3s ease;
+
+}
+
+
+#btnDesbloquear:hover {
+
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 15px 35px rgba(190, 60, 105, .35);
+
+}
+
+
+#btnDesbloquear:active {
+
+    transform: scale(.96);
+
+}
+
+
+.error-password {
+
+    opacity: 0;
+
+    height: 20px;
+
+    margin-top: 12px !important;
+
+    color: #ff9eb8 !important;
+
+    transition: .3s ease;
+
+}
+
+
+.error-password.mostrar {
+
+    opacity: 1;
+
+}
+
+
+.pantalla-privada small {
+
+    position: relative;
+
+    color: #85616e;
+
+    margin-top: 10px;
+
+}
+
+
+/* =========================================
+   INICIO
+========================================= */
+
+.inicio {
+
+    position: relative;
+
+    min-height: 100vh;
+    min-height: 100svh;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+
+    padding: 30px;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #4a152c 0%,
+            #210b16 45%,
+            #12070d 80%
+        );
+
+}
+
+
+.inicio-contenido {
+
+    position: relative;
+
+    z-index: 2;
+
+    animation: subir 1.2s ease;
+
+}
+
+
+.corazon-grande {
+
+    font-size: 70px;
+
+    margin-bottom: 25px;
+
+    animation: latido 1.7s infinite;
+
+}
+
+
+.pequeno {
+
+    color: #dba2b4;
+
+    font-size: 11px;
+
+    letter-spacing: 4px;
+
+    text-transform: uppercase;
+
+}
+
+
+.inicio h1 {
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: clamp(75px, 16vw, 150px);
+
+    font-weight: 500;
+
+    line-height: .8;
+
+    margin: 20px 0;
+
+}
+
+
+.inicio p {
+
+    color: #d6b8c2;
+
+    margin: 25px 0;
+
+}
+
+
+.inicio button {
+
+    padding: 16px 35px;
+
+    border: 1px solid rgba(255,255,255,.2);
+
+    border-radius: 50px;
+
+    background: rgba(255,255,255,.08);
+
+    color: white;
+
+    cursor: pointer;
+
+    transition: .3s;
+
+}
+
+
+.inicio button:hover {
+
+    background: #c74d76;
+
+    transform: translateY(-3px);
+
+}
+
+
+.inicio small {
+
+    display: block;
+
+    margin-top: 25px;
+
+    color: #80606b;
+
+}
+
+
+.decoracion,
+.linea {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 15px;
+
+    color: #d96589;
+
+}
+
+
+.decoracion span,
+.linea span {
+
+    width: 55px;
+
+    height: 1px;
+
+    background: rgba(217,101,137,.5);
+
+}
+
+
+/* =========================================
+   CORAZONES FLOTANTES
+========================================= */
+
+.corazones {
+
+    position: absolute;
+
+    inset: 0;
+
+    overflow: hidden;
+
+}
+
+
+.corazones span {
+
+    position: absolute;
+
+    color: rgba(255,255,255,.12);
+
+    animation: flotar 8s linear infinite;
+
+}
+
+
+.corazones span:nth-child(1) {
+    left: 10%;
+    bottom: -50px;
+    font-size: 35px;
+    animation-delay: 0s;
+}
+
+
+.corazones span:nth-child(2) {
+    left: 30%;
+    bottom: -50px;
+    font-size: 20px;
+    animation-delay: 2s;
+}
+
+
+.corazones span:nth-child(3) {
+    left: 50%;
+    bottom: -50px;
+    font-size: 45px;
+    animation-delay: 4s;
+}
+
+
+.corazones span:nth-child(4) {
+    left: 70%;
+    bottom: -50px;
+    font-size: 25px;
+    animation-delay: 1s;
+}
+
+
+.corazones span:nth-child(5) {
+    left: 85%;
+    bottom: -50px;
+    font-size: 40px;
+    animation-delay: 3s;
+}
+
+
+.corazones span:nth-child(6) {
+    left: 60%;
+    bottom: -50px;
+    font-size: 20px;
+    animation-delay: 5s;
+}
+
+
+/* =========================================
+   HERO
+========================================= */
+
+.hero {
+
+    min-height: 100vh;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+
+    padding: 60px 25px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #12070d,
+            #29101c
+        );
+
+}
+
+
+.hero-contenido {
+
+    max-width: 750px;
+
+}
+
+
+.hero-contenido > span {
+
+    color: #d99aae;
+
+    font-size: 11px;
+
+    letter-spacing: 4px;
+
+    text-transform: uppercase;
+
+}
+
+
+.hero h2 {
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: clamp(70px, 15vw, 140px);
+
+    font-weight: 500;
+
+    line-height: .8;
+
+    margin: 25px 0;
+
+}
+
+
+.corazones-hero {
+
+    color: #d65d82;
+
+    letter-spacing: 12px;
+
+    margin: 30px 0;
+
+}
+
+
+.hero p {
+
+    color: #c8aab5;
+
+    line-height: 1.8;
+
+}
+
+
+.hero .grande {
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: clamp(25px, 4vw, 38px);
+
+    color: #fff;
+
+    margin-bottom: 15px;
+
+}
+
+
+#comenzar {
+
+    margin-top: 35px;
+
+    background: none;
+
+    border: none;
+
+    color: #e486a1;
+
+    cursor: pointer;
+
+    font-size: 15px;
+
+}
+
+
+/* =========================================
+   SECCIONES
+========================================= */
+
+.seccion {
+
+    padding: 110px 25px;
+
+}
+
+
+.contenedor {
+
+    width: min(1100px, 100%);
+
+    margin: auto;
+
+    text-align: center;
+
+}
+
+
+.etiqueta {
+
+    color: #d8869e;
+
+    font-size: 10px;
+
+    letter-spacing: 4px;
+
+    text-transform: uppercase;
+
+}
+
+
+.seccion h2 {
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: clamp(40px, 7vw, 65px);
+
+    font-weight: 500;
+
+    margin: 20px 0;
+
+}
+
+
+.seccion p {
+
+    color: #c5a7b2;
+
+    line-height: 1.9;
+
+}
+
+
+.especial {
+
+    font-family: "Cormorant Garamond", serif;
+
+    color: #fff !important;
+
+    font-size: 25px;
+
+    margin: 35px auto 15px;
+
+}
+
+
+/* =========================================
+   CONTADOR
+========================================= */
+
+.contador-seccion {
+
+    padding: 110px 25px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #29101c,
+            #180a11
+        );
+
+    text-align: center;
+
+}
+
+
+.contador-seccion h2 {
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: clamp(40px, 7vw, 65px);
+
+    font-weight: 500;
+
+    margin: 20px 0 10px;
+
+}
+
+
+.contador-seccion > .contenedor > p {
+
+    color: #b994a1;
+
+}
+
+
+.contador {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(6, 1fr);
+
+    gap: 12px;
+
+    margin: 50px auto;
+
+    max-width: 900px;
+
+}
+
+
+.contador div {
+
+    padding: 22px 10px;
+
+    border-radius: 15px;
+
+    background: rgba(255,255,255,.045);
+
+    border: 1px solid rgba(255,255,255,.06);
+
+    backdrop-filter: blur(10px);
+
+}
+
+
+.contador strong {
+
+    display: block;
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: 42px;
+
+    color: #fff;
+
+}
+
+
+.contador span {
+
+    font-size: 10px;
+
+    color: #b88e9c;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1px;
+
+}
+
+
+.nota {
+
+    margin-top: 20px;
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: 24px;
+
+}
+
+
+/* =========================================
+   GALERÍA
+========================================= */
+
+.fotos {
+
+    background: #12070d;
+
+}
+
+
+.galeria {
+
+    margin-top: 50px;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 18px;
+
+}
+
+
+.foto {
+
+    aspect-ratio: 1 / 1;
+
+    overflow: hidden;
+
+    border-radius: 15px;
+
+    background: #24101a;
+
+    cursor: pointer;
+
+}
+
+
+.foto img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    transition: transform .7s ease;
+
+}
+
+
+.foto:hover img {
+
+    transform: scale(1.08);
+
+}
+
+
+/* =========================================
+   MENSAJES
+========================================= */
+
+.mensajes {
+
+    background:
+        linear-gradient(
+            180deg,
+            #180a11,
+            #29101c
+        );
+
+}
+
+
+.mensaje {
+
+    width: min(650px, 100%);
+
+    margin: 45px auto 25px;
+
+    padding: 50px 30px;
+
+    border-radius: 25px;
+
+    background: rgba(255,255,255,.045);
+
+    border: 1px solid rgba(255,255,255,.07);
+
+    transition: .3s ease;
+
+}
+
+
+.mensaje > div {
+
+    font-size: 40px;
+
+    margin-bottom: 20px;
+
+}
+
+
+.mensaje p {
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: clamp(25px, 5vw, 35px);
+
+    color: white;
+
+}
+
+
+.mensaje small {
+
+    display: block;
+
+    margin-top: 20px;
+
+    color: #98717f;
+
+}
+
+
+#otroMensaje {
+
+    padding: 13px 25px;
+
+    border: 1px solid rgba(255,255,255,.15);
+
+    border-radius: 50px;
+
+    background: transparent;
+
+    color: #e8a0b5;
+
+    cursor: pointer;
+
+}
+
+
+/* =========================================
+   COSAS QUE ME GUSTAN
+========================================= */
+
+.gustos {
+
+    background: #12070d;
+
+}
+
+
+.gustos-grid {
+
+    margin-top: 50px;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 20px;
+
+}
+
+
+.gusto {
+
+    padding: 35px 25px;
+
+    border-radius: 20px;
+
+    background: rgba(255,255,255,.035);
+
+    border: 1px solid rgba(255,255,255,.06);
+
+    transition: .4s ease;
+
+}
+
+
+.gusto:hover {
+
+    transform: translateY(-8px);
+
+    background: rgba(255,255,255,.06);
+
+}
+
+
+.gusto > div {
+
+    font-size: 35px;
+
+    margin-bottom: 20px;
+
+}
+
+
+.gusto h3 {
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: 28px;
+
+    font-weight: 500;
+
+    margin-bottom: 12px;
+
+}
+
+
+.gusto p {
+
+    font-size: 14px;
+
+}
+
+
+/* =========================================
+   CARTA
+========================================= */
+
+.carta-seccion {
+
+    background:
+        linear-gradient(
+            180deg,
+            #29101c,
+            #180a11
+        );
+
+}
+
+
+.sobre {
+
+    margin: 30px auto;
+
+    width: 130px;
+
+    height: 130px;
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(255,255,255,.12);
+
+    background: rgba(255,255,255,.05);
+
+    color: white;
+
+    font-size: 45px;
+
+    cursor: pointer;
+
+    transition: .4s ease;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+}
+
+
+.sobre:hover {
+
+    transform: scale(1.08);
+
+    background: rgba(201,76,119,.2);
+
+}
+
+
+.sobre small {
+
+    font-size: 10px;
+
+    color: #c996a7;
+
+    margin-top: 8px;
+
+}
+
+
+.carta {
+
+    width: min(750px, 100%);
+
+    margin: 25px auto;
+
+    padding: clamp(30px, 6vw, 65px);
+
+    text-align: left;
+
+    background:
+        linear-gradient(
+            145deg,
+            #fff9fa,
+            #f7e9ed
+        );
+
+    color: #422632;
+
+    border-radius: 8px;
+
+    box-shadow:
+        0 25px 70px rgba(0,0,0,.35);
+
+    animation: cartaEntrada .8s ease;
+
+}
+
+
+.carta-corazon {
+
+    text-align: center;
+
+    font-size: 45px;
+
+    margin-bottom: 30px;
+
+}
+
+
+.carta p {
+
+    color: #593642;
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: 22px;
+
+    line-height: 1.7;
+
+    margin-bottom: 20px;
+
+}
+
+
+.carta .firma {
+
+    text-align: center;
+
+    font-size: 28px;
+
+    margin-top: 40px;
+
+}
+
+
+.firma-final {
+
+    margin-top: 30px;
+
+    text-align: center;
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: 22px;
+
+}
+
+
+.firma-final strong {
+
+    display: block;
+
+    font-size: 32px;
+
+    margin-top: 10px;
+
+    color: #a43e61;
+
+}
+
+
+/* =========================================
+   REGALO
+========================================= */
+
+.regalo {
+
+    background: #12070d;
+
+}
+
+
+#regalo {
+
+    border: none;
+
+    background: none;
+
+    font-size: 85px;
+
+    cursor: pointer;
+
+    margin: 35px;
+
+    transition: .4s;
+
+}
+
+
+#regalo:hover {
+
+    transform: scale(1.15) rotate(-4deg);
+
+}
+
+
+#regaloMensaje {
+
+    max-width: 550px;
+
+    margin: auto;
+
+    padding: 35px;
+
+    border-radius: 20px;
+
+    background: rgba(255,255,255,.04);
+
+    opacity: 0;
+
+    transform: translateY(20px);
+
+    pointer-events: none;
+
+    transition: .6s ease;
+
+}
+
+
+#regaloMensaje.activo {
+
+    opacity: 1;
+
+    transform: translateY(0);
+
+    pointer-events: auto;
+
+}
+
+
+#regaloMensaje > div {
+
+    font-size: 40px;
+
+}
+
+
+#regaloMensaje h3 {
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: 35px;
+
+    margin: 15px 0;
+
+}
+
+
+/* =========================================
+   FINAL
+========================================= */
+
+.final {
+
+    min-height: 100vh;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+
+    padding: 80px 25px;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #4a152c,
+            #12070d 75%
+        );
+
+}
+
+
+.final > div {
+
+    max-width: 750px;
+
+}
+
+
+.corazon-final {
+
+    font-size: 60px;
+
+    animation: latido 1.6s infinite;
+
+}
+
+
+.final span {
+
+    color: #d99aae;
+
+    letter-spacing: 4px;
+
+    font-size: 11px;
+
+    text-transform: uppercase;
+
+}
+
+
+.final h2 {
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: clamp(70px, 15vw, 130px);
+
+    font-weight: 500;
+
+    margin: 15px 0;
+
+}
+
+
+.final p {
+
+    color: #c8aab5;
+
+    line-height: 1.8;
+
+    margin: 30px auto;
+
+}
+
+
+.final h3 {
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: clamp(28px, 5vw, 40px);
+
+    font-weight: 500;
+
+    margin: 35px 0;
+
+}
+
+
+#respuestaBtn {
+
+    padding: 16px 30px;
+
+    border: none;
+
+    border-radius: 50px;
+
+    background: #c84f78;
+
+    color: white;
+
+    cursor: pointer;
+
+    transition: .3s;
+
+}
+
+
+#respuestaBtn:hover {
+
+    transform: translateY(-3px);
+
+}
+
+
+#respuesta {
+
+    display: none;
+
+    margin-top: 45px;
+
+    animation: aparecer .8s ease;
+
+}
+
+
+#respuesta.activo {
+
+    display: block;
+
+}
+
+
+.corazon-enorme {
+
+    font-size: 80px;
+
+    animation: latido 1.5s infinite;
+
+}
+
+
+#respuesta h2 {
+
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: 55px;
+
+    margin: 15px 0;
+
+}
+
+
+/* =========================================
+   MÚSICA
+========================================= */
+
+.musica-btn {
+
+    position: fixed;
+
+    right: 20px;
+
+    bottom: 20px;
+
+    z-index: 5000;
+
+    width: 50px;
+
+    height: 50px;
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(255,255,255,.15);
+
+    background: rgba(40,12,25,.85);
+
+    backdrop-filter: blur(10px);
+
+    color: white;
+
+    cursor: pointer;
+
+    font-size: 20px;
+
+    box-shadow: 0 10px 30px rgba(0,0,0,.3);
+
+}
+
+
+/* =========================================
+   FOOTER
+========================================= */
+
+footer {
+
+    text-align: center;
+
+    padding: 50px 20px;
+
+    background: #0c0509;
+
+}
+
+
+footer > div {
+
+    font-size: 25px;
+
+}
+
+
+footer p {
+
+    color: #a77b89;
+
+    margin: 12px 0;
+
+}
+
+
+footer small {
+
+    color: #604451;
+
+}
+
+
+/* =========================================
+   ANIMACIONES
+========================================= */
+
+@keyframes aparecer {
+
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+@keyframes subir {
+
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+@keyframes latido {
+
+    0%, 100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.12);
+    }
+
+}
+
+
+@keyframes flotar {
+
+    0% {
+        transform: translateY(0) rotate(0);
+        opacity: 0;
+    }
+
+    15% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(-110vh) rotate(360deg);
+        opacity: 0;
+    }
+
+}
+
+
+@keyframes cartaEntrada {
+
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+
+}
+
+
+/* =========================================
+   TELÉFONOS
+========================================= */
+
+@media (max-width: 800px) {
+
+    .contador {
+
+        grid-template-columns:
+            repeat(3, 1fr);
+
+    }
+
+
+    .galeria {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+    }
+
+
+    .gustos-grid {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+    }
+
+}
+
+
+@media (max-width: 520px) {
+
+    .seccion {
+
+        padding: 80px 18px;
+
+    }
+
+
+    .contador {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+        gap: 10px;
+
+    }
+
+
+    .contador strong {
+
+        font-size: 35px;
+
+    }
+
+
+    .galeria {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+        gap: 10px;
+
+    }
+
+
+    .gustos-grid {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .carta {
+
+        padding: 28px 22px;
+
+    }
+
+
+    .carta p {
+
+        font-size: 20px;
+
+    }
+
+
+    .pantalla-privada {
+
+        padding: 20px;
+
+    }
+
+
+    .pantalla-privada h1 {
+
+        font-size: 65px;
+
+    }
+
+
+    .privada-corazon {
+
+        font-size: 50px;
+
+    }
+
+}
+
+
+@media (max-width: 360px) {
+
+    .contador strong {
+
+        font-size: 30px;
+
+    }
+
+
+    .contador span {
+
+        font-size: 8px;
+
+    }
+
+
+    .inicio h1 {
+
+        font-size: 70px;
+
+    }
+
+}
