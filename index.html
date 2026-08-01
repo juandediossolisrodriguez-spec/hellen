@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 
@@ -9,19 +8,26 @@
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0">
 
-    <meta name="theme-color" content="#180910">
+    <meta name="theme-color"
+        content="#180910">
 
     <title>Para Hellen ❤️</title>
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet"
+        href="style.css">
 
 </head>
 
+
 <body>
 
-    <!-- PANTALLA PRIVADA -->
 
-    <section id="pantallaPrivada" class="pantalla-privada">
+    <!-- =========================================
+         PANTALLA DE CONTRASEÑA
+    ========================================== -->
+
+    <section id="pantallaPrivada"
+        class="pantalla-privada">
 
         <div class="privada-corazon">
             ❤️
@@ -54,8 +60,11 @@
             Abrir mi sorpresa ❤️
         </button>
 
-        <p id="errorPassword" class="error-password">
+        <p id="errorPassword"
+            class="error-password">
+
             Esa no es la contraseña ❤️
+
         </p>
 
         <small>
@@ -65,22 +74,54 @@
     </section>
 
 
-    <!-- PÁGINA PRINCIPAL -->
 
-    <div id="paginaPrincipal" class="oculto">
+    <!-- =========================================
+         PÁGINA PRINCIPAL
+    ========================================== -->
 
-        <audio id="musica" loop>
-            <source src="music/cariño.mp3" type="audio/mpeg">
+    <div id="paginaPrincipal"
+        class="oculto">
+
+
+        <!-- MÚSICA -->
+
+        <audio
+            id="musica"
+            loop
+            preload="auto">
+
+            <!-- Primero intenta desde la raíz -->
+
+            <source
+                src="cariño.mp3"
+                type="audio/mpeg">
+
+            <!-- Si no existe, intenta music/ -->
+
+            <source
+                src="music/cariño.mp3"
+                type="audio/mpeg">
+
         </audio>
 
-        <button id="btnMusica" class="musica-btn">
+
+        <button
+            id="btnMusica"
+            class="musica-btn">
+
             🎵
+
         </button>
 
 
-        <!-- INICIO -->
 
-        <section id="inicio" class="inicio">
+        <!-- =========================================
+             INICIO
+        ========================================== -->
+
+        <section
+            id="inicio"
+            class="inicio">
 
             <div class="corazones">
 
@@ -92,6 +133,7 @@
                 <span>♥</span>
 
             </div>
+
 
             <div class="inicio-contenido">
 
@@ -134,7 +176,10 @@
         </section>
 
 
-        <!-- HERO -->
+
+        <!-- =========================================
+             HERO
+        ========================================== -->
 
         <section class="hero">
 
@@ -158,7 +203,8 @@
                 </p>
 
                 <p>
-                    Quiero que recorras esto poquito a poquito...
+                    Quiero que recorras esto
+                    poquito a poquito...
                 </p>
 
                 <button id="comenzar">
@@ -170,7 +216,10 @@
         </section>
 
 
-        <!-- INTRODUCCIÓN -->
+
+        <!-- =========================================
+             INTRODUCCIÓN
+        ========================================== -->
 
         <section class="seccion introduccion">
 
@@ -208,7 +257,10 @@
         </section>
 
 
-        <!-- CONTADOR -->
+
+        <!-- =========================================
+             CONTADOR
+        ========================================== -->
 
         <section class="contador-seccion">
 
@@ -225,6 +277,7 @@
                 <p>
                     Desde el 30 de julio de 2025
                 </p>
+
 
                 <div class="contador">
 
@@ -260,6 +313,7 @@
 
                 </div>
 
+
                 <p class="nota">
                     Y seguimos escribiendo nuestra historia... ❤️
                 </p>
@@ -269,7 +323,10 @@
         </section>
 
 
-        <!-- FOTOS -->
+
+        <!-- =========================================
+             FOTOS
+        ========================================== -->
 
         <section class="seccion fotos">
 
@@ -288,59 +345,113 @@
                     de nuestra historia.
                 </p>
 
+
                 <div class="galeria">
 
-                    <div class="foto">
-                        <img src="mi novia (1).jpg" alt="Hellen">
-                    </div>
 
                     <div class="foto">
-                        <img src="mi novia (2).jpg" alt="Hellen">
+                        <img
+                            src="mi novia (1).jpg"
+                            onerror="this.onerror=null;this.src='images/mi novia (1).jpg';"
+                            alt="Hellen">
                     </div>
 
-                    <div class="foto">
-                        <img src="mi novia (3).jpg" alt="Hellen">
-                    </div>
 
                     <div class="foto">
-                        <img src="mi novia (4).jpg" alt="Hellen">
+                        <img
+                            src="mi novia (2).jpg"
+                            onerror="this.onerror=null;this.src='images/mi novia (2).jpg';"
+                            alt="Hellen">
                     </div>
 
-                    <div class="foto">
-                        <img src="mi novia (5).jpg" alt="Hellen">
-                    </div>
 
                     <div class="foto">
-                        <img src="mi novia (6).jpg" alt="Hellen">
+                        <img
+                            src="mi novia (3).jpg"
+                            onerror="this.onerror=null;this.src='images/mi novia (3).jpg';"
+                            alt="Hellen">
                     </div>
 
-                    <div class="foto">
-                        <img src="mi novia (7).jpg" alt="Hellen">
-                    </div>
 
                     <div class="foto">
-                        <img src="mi novia (8).jpg" alt="Hellen">
+                        <img
+                            src="mi novia (4).jpg"
+                            onerror="this.onerror=null;this.src='images/mi novia (4).jpg';"
+                            alt="Hellen">
                     </div>
 
-                    <div class="foto">
-                        <img src="mi novia (9).jpg" alt="Hellen">
-                    </div>
 
                     <div class="foto">
-                        <img src="mi novia (10).jpg" alt="Hellen">
+                        <img
+                            src="mi novia (5).jpg"
+                            onerror="this.onerror=null;this.src='images/mi novia (5).jpg';"
+                            alt="Hellen">
                     </div>
 
-                    <div class="foto">
-                        <img src="mi novia (11).jpg" alt="Hellen">
-                    </div>
 
                     <div class="foto">
-                        <img src="mi novia (12).jpg" alt="Hellen">
+                        <img
+                            src="mi novia (6).jpg"
+                            onerror="this.onerror=null;this.src='images/mi novia (6).jpg';"
+                            alt="Hellen">
                     </div>
 
+
                     <div class="foto">
-                        <img src="mi novia (13).jpg" alt="Hellen">
+                        <img
+                            src="mi novia (7).jpg"
+                            onerror="this.onerror=null;this.src='images/mi novia (7).jpg';"
+                            alt="Hellen">
                     </div>
+
+
+                    <div class="foto">
+                        <img
+                            src="mi novia (8).jpg"
+                            onerror="this.onerror=null;this.src='images/mi novia (8).jpg';"
+                            alt="Hellen">
+                    </div>
+
+
+                    <div class="foto">
+                        <img
+                            src="mi novia (9).jpg"
+                            onerror="this.onerror=null;this.src='images/mi novia (9).jpg';"
+                            alt="Hellen">
+                    </div>
+
+
+                    <div class="foto">
+                        <img
+                            src="mi novia (10).jpg"
+                            onerror="this.onerror=null;this.src='images/mi novia (10).jpg';"
+                            alt="Hellen">
+                    </div>
+
+
+                    <div class="foto">
+                        <img
+                            src="mi novia (11).jpg"
+                            onerror="this.onerror=null;this.src='images/mi novia (11).jpg';"
+                            alt="Hellen">
+                    </div>
+
+
+                    <div class="foto">
+                        <img
+                            src="mi novia (12).jpg"
+                            onerror="this.onerror=null;this.src='images/mi novia (12).jpg';"
+                            alt="Hellen">
+                    </div>
+
+
+                    <div class="foto">
+                        <img
+                            src="mi novia (13).jpg"
+                            onerror="this.onerror=null;this.src='images/mi novia (13).jpg';"
+                            alt="Hellen">
+                    </div>
+
 
                 </div>
 
@@ -349,7 +460,10 @@
         </section>
 
 
-        <!-- MENSAJES -->
+
+        <!-- =========================================
+             MENSAJES
+        ========================================== -->
 
         <section class="seccion mensajes">
 
@@ -363,7 +477,8 @@
                     Algunas cosas que quiero decirte
                 </h2>
 
-                <div id="mensaje" class="mensaje">
+                <div id="mensaje"
+                    class="mensaje">
 
                     <div>
                         ❤️
@@ -389,7 +504,10 @@
         </section>
 
 
-        <!-- COSAS QUE ME GUSTAN -->
+
+        <!-- =========================================
+             COSAS QUE ME GUSTAN
+        ========================================== -->
 
         <section class="seccion gustos">
 
@@ -407,7 +525,9 @@
                     Podría hacer una lista interminable...
                 </p>
 
+
                 <div class="gustos-grid">
+
 
                     <div class="gusto">
 
@@ -505,6 +625,7 @@
 
                     </div>
 
+
                 </div>
 
             </div>
@@ -512,7 +633,10 @@
         </section>
 
 
-        <!-- CARTA -->
+
+        <!-- =========================================
+             CARTA
+        ========================================== -->
 
         <section class="seccion carta-seccion">
 
@@ -526,7 +650,10 @@
                     Algo que quiero que leas 💌
                 </h2>
 
-                <button id="abrirCarta" class="sobre">
+
+                <button
+                    id="abrirCarta"
+                    class="sobre">
 
                     💌
 
@@ -537,11 +664,14 @@
                 </button>
 
 
-                <article id="carta" class="carta ocultar">
+                <article
+                    id="carta"
+                    class="carta ocultar">
 
                     <div class="carta-corazon">
                         ❤️
                     </div>
+
 
                     <p>
                         Bueno mi vida hermosa, me siento un poco mal
@@ -550,12 +680,14 @@
                         admiro, y admiro nuestra relación.
                     </p>
 
+
                     <p>
                         Quiero que cada dia nos veamos mas juntos con
                         Dios, se que no soy perfeecto amor, pero quiero
                         demostrarte que te amo en las buenatass en las
                         malas y en las terribles mi vida.
                     </p>
+
 
                     <p>
                         Eres la mejor novia del universo, me alegra
@@ -565,6 +697,7 @@
                         naranja, mi todo.
                     </p>
 
+
                     <p>
                         Es por eo que quiero trabajar muy fuerte para
                         que algun dia vivamos juntoss despues de
@@ -572,9 +705,11 @@
                         para nuestra familia.
                     </p>
 
+
                     <p class="firma">
                         Te amo muchísimo, Hellen. ❤️
                     </p>
+
 
                     <div class="firma-final">
 
@@ -593,7 +728,10 @@
         </section>
 
 
-        <!-- REGALO -->
+
+        <!-- =========================================
+             REGALO
+        ========================================== -->
 
         <section class="seccion regalo">
 
@@ -614,6 +752,7 @@
                 <button id="regalo">
                     🎁
                 </button>
+
 
                 <div id="regaloMensaje">
 
@@ -638,7 +777,10 @@
         </section>
 
 
-        <!-- FINAL -->
+
+        <!-- =========================================
+             FINAL
+        ========================================== -->
 
         <section class="final">
 
@@ -678,6 +820,7 @@
                     Sí, quiero ❤️
                 </button>
 
+
                 <div id="respuesta">
 
                     <div class="corazon-enorme">
@@ -707,7 +850,10 @@
         </section>
 
 
-        <!-- FOOTER -->
+
+        <!-- =========================================
+             FOOTER
+        ========================================== -->
 
         <footer>
 
@@ -724,6 +870,7 @@
             </small>
 
         </footer>
+
 
     </div>
 
