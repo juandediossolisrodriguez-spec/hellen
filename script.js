@@ -1,13 +1,11 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-
     /* =========================================
        CONTRASEÑA DEL ANIVERSARIO
        30 DE JULIO DE 2025
     ========================================= */
 
     const CONTRASENA = "30072025";
-
 
     const pantallaPrivada =
         document.getElementById("pantallaPrivada");
@@ -25,69 +23,8 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("errorPassword");
 
 
-    function desbloquear() {
-
-        if (password.value === CONTRASENA) {
-
-            errorPassword.classList.remove("mostrar");
-
-            pantallaPrivada.style.opacity = "0";
-
-            pantallaPrivada.style.transition =
-                "opacity .8s ease";
-
-
-            setTimeout(() => {
-
-                pantallaPrivada.style.display =
-                    "none";
-
-                paginaPrincipal.classList.remove(
-                    "oculto"
-                );
-
-                window.scrollTo(0, 0);
-
-            }, 800);
-
-
-        } else {
-
-            errorPassword.classList.add(
-                "mostrar"
-            );
-
-            password.value = "";
-
-            password.focus();
-
-        }
-
-    }
-
-
-    btnDesbloquear.addEventListener(
-        "click",
-        desbloquear
-    );
-
-
-    password.addEventListener(
-        "keydown",
-        (event) => {
-
-            if (event.key === "Enter") {
-
-                desbloquear();
-
-            }
-
-        }
-    );
-
-
     /* =========================================
-       INICIO
+       ELEMENTOS DE LA PÁGINA
     ========================================= */
 
     const inicio =
@@ -99,7 +36,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const comenzar =
         document.getElementById("comenzar");
 
-
     const musica =
         document.getElementById("musica");
 
@@ -107,80 +43,270 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("btnMusica");
 
 
-    entrar.addEventListener(
-        "click",
-        () => {
+    /* =========================================
+       DESBLOQUEAR
+       CONTRASEÑA → PÁGINA DIRECTAMENTE
+    ========================================= */
 
-            musica.play().catch(() => {});
+    function desbloquear() {
 
+        if (password.value !== CONTRASENA) {
 
-            inicio.style.transition =
-                "opacity .8s ease, transform .8s ease";
+            errorPassword.classList.add("mostrar");
 
-            inicio.style.opacity = "0";
+            password.value = "";
 
-            inicio.style.transform =
-                "scale(1.03)";
+            password.focus();
 
-
-            setTimeout(() => {
-
-                inicio.classList.add("oculto");
-
-                window.scrollTo(0, 0);
-
-            }, 800);
-
+            return;
         }
-    );
 
 
-    comenzar.addEventListener(
-        "click",
-        () => {
+        errorPassword.classList.remove("mostrar");
 
-            document
-                .querySelector(".introduccion")
-                .scrollIntoView({
-                    behavior: "smooth"
+
+        /* Transición de salida */
+
+        pantallaPrivada.style.transition =
+            "opacity 0.8s ease, transform 0.8s ease";
+
+        pantallaPrivada.style.opacity = "0";
+
+        pantallaPrivada.style.transform =
+            "scale(1.03)";
+
+
+        setTimeout(() => {
+
+            /* Ocultar contraseña */
+
+            pantallaPrivada.style.display =
+                "none";
+
+
+            /* Mostrar página */
+
+            paginaPrincipal.classList.remove(
+                "oculto"
+            );
+
+
+            /*
+             * IMPORTANTE:
+             * Ocultamos la pantalla intermedia
+             * que tenía el botón "Entrar ❤️".
+             */
+
+            if (inicio) {
+
+                inicio.style.display = "none";
+
+            }
+
+
+            /*
+             * Aseguramos que la página
+             * comience arriba.
+             */
+
+            window.scrollTo({
+                top: 0,
+                behavior: "instant"
+            });
+
+
+            /*
+             * Intentamos reproducir la música.
+             *
+             * Como esta función fue activada
+             * por una interacción del usuario,
+             * algunos navegadores permitirán
+             * la reproducción.
+             */
+
+            if (musica) {
+
+                musica.volume = 0.7;
+
+                musica.play().catch(() => {
+
+                    /*
+                     * iPhone puede bloquear
+                     * la reproducción automática.
+                     *
+                     * En ese caso se podrá
+                     * iniciar mediante 🎵.
+                     */
+
                 });
 
-        }
-    );
+            }
+
+        }, 800);
+
+    }
+
+
+    /* =========================================
+       BOTÓN DE CONTRASEÑA
+    ========================================= */
+
+    if (btnDesbloquear) {
+
+        btnDesbloquear.addEventListener(
+            "click",
+            desbloquear
+        );
+
+    }
+
+
+    /* =========================================
+       ENTER EN LA CONTRASEÑA
+    ========================================= */
+
+    if (password) {
+
+        password.addEventListener(
+            "keydown",
+            (event) => {
+
+                if (event.key === "Enter") {
+
+                    desbloquear();
+
+                }
+
+            }
+        );
+
+    }
+
+
+    /* =========================================
+       BOTÓN "ENTRAR"
+       MANTENIDO POR COMPATIBILIDAD
+    ========================================= */
+
+    if (entrar) {
+
+        entrar.addEventListener(
+            "click",
+            () => {
+
+                if (musica) {
+
+                    musica.play().catch(() => {});
+
+                }
+
+
+                if (inicio) {
+
+                    inicio.style.transition =
+                        "opacity 0.8s ease, transform 0.8s ease";
+
+                    inicio.style.opacity = "0";
+
+                    inicio.style.transform =
+                        "scale(1.03)";
+
+
+                    setTimeout(() => {
+
+                        inicio.classList.add(
+                            "oculto"
+                        );
+
+                        window.scrollTo({
+                            top: 0,
+                            behavior: "instant"
+                        });
+
+                    }, 800);
+
+                }
+
+            }
+        );
+
+    }
+
+
+    /* =========================================
+       BOTÓN COMENZAR
+    ========================================= */
+
+    if (comenzar) {
+
+        comenzar.addEventListener(
+            "click",
+            () => {
+
+                const introduccion =
+                    document.querySelector(
+                        ".introduccion"
+                    );
+
+
+                if (introduccion) {
+
+                    introduccion.scrollIntoView({
+                        behavior: "smooth"
+                    });
+
+                }
+
+            }
+        );
+
+    }
 
 
     /* =========================================
        MÚSICA
     ========================================= */
 
-    btnMusica.addEventListener(
-        "click",
-        () => {
+    if (btnMusica && musica) {
 
-            if (musica.paused) {
+        btnMusica.addEventListener(
+            "click",
+            () => {
 
-                musica.play()
-                    .then(() => {
+                if (musica.paused) {
 
-                        btnMusica.textContent = "🎵";
+                    musica.play()
+                        .then(() => {
 
-                    })
-                    .catch(() => {});
+                            btnMusica.textContent =
+                                "🎵";
 
-            } else {
+                        })
+                        .catch(() => {
 
-                musica.pause();
+                            btnMusica.textContent =
+                                "▶️";
 
-                btnMusica.textContent = "🔇";
+                        });
+
+                } else {
+
+                    musica.pause();
+
+                    btnMusica.textContent =
+                        "🔇";
+
+                }
 
             }
+        );
 
-        }
-    );
+    }
 
 
     /* =========================================
        CONTADOR
+       DESDE 30 DE JULIO DE 2025
     ========================================= */
 
     const fechaInicio =
@@ -198,25 +324,31 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const ahora = new Date();
 
+
         let anios =
             ahora.getFullYear() -
             fechaInicio.getFullYear();
+
 
         let meses =
             ahora.getMonth() -
             fechaInicio.getMonth();
 
+
         let dias =
             ahora.getDate() -
             fechaInicio.getDate();
+
 
         let horas =
             ahora.getHours() -
             fechaInicio.getHours();
 
+
         let minutos =
             ahora.getMinutes() -
             fechaInicio.getMinutes();
+
 
         let segundos =
             ahora.getSeconds() -
@@ -259,6 +391,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     0
                 ).getDate();
 
+
             dias += diasMesAnterior;
 
             meses--;
@@ -275,39 +408,77 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
 
-        document.getElementById(
-            "anios"
-        ).textContent = anios;
+        const elementoAnios =
+            document.getElementById("anios");
+
+        const elementoMeses =
+            document.getElementById("meses");
+
+        const elementoDias =
+            document.getElementById("dias");
+
+        const elementoHoras =
+            document.getElementById("horas");
+
+        const elementoMinutos =
+            document.getElementById("minutos");
+
+        const elementoSegundos =
+            document.getElementById("segundos");
 
 
-        document.getElementById(
-            "meses"
-        ).textContent = meses;
+        if (elementoAnios) {
+
+            elementoAnios.textContent =
+                anios;
+
+        }
 
 
-        document.getElementById(
-            "dias"
-        ).textContent = dias;
+        if (elementoMeses) {
+
+            elementoMeses.textContent =
+                meses;
+
+        }
 
 
-        document.getElementById(
-            "horas"
-        ).textContent = horas;
+        if (elementoDias) {
+
+            elementoDias.textContent =
+                dias;
+
+        }
 
 
-        document.getElementById(
-            "minutos"
-        ).textContent = minutos;
+        if (elementoHoras) {
+
+            elementoHoras.textContent =
+                horas;
+
+        }
 
 
-        document.getElementById(
-            "segundos"
-        ).textContent = segundos;
+        if (elementoMinutos) {
+
+            elementoMinutos.textContent =
+                minutos;
+
+        }
+
+
+        if (elementoSegundos) {
+
+            elementoSegundos.textContent =
+                segundos;
+
+        }
 
     }
 
 
     actualizarContador();
+
 
     setInterval(
         actualizarContador,
@@ -339,9 +510,15 @@ document.addEventListener("DOMContentLoaded", () => {
     let mensajeActual = 0;
 
 
-    document
-        .getElementById("otroMensaje")
-        .addEventListener(
+    const otroMensaje =
+        document.getElementById(
+            "otroMensaje"
+        );
+
+
+    if (otroMensaje) {
+
+        otroMensaje.addEventListener(
             "click",
             () => {
 
@@ -349,6 +526,11 @@ document.addEventListener("DOMContentLoaded", () => {
                     document.getElementById(
                         "mensaje"
                     );
+
+
+                if (!mensaje) {
+                    return;
+                }
 
 
                 mensaje.style.opacity = "0";
@@ -372,16 +554,32 @@ document.addEventListener("DOMContentLoaded", () => {
                     }
 
 
-                    document.getElementById(
-                        "textoMensaje"
-                    ).textContent =
-                        mensajes[ mensajeActual ];
+                    const textoMensaje =
+                        document.getElementById(
+                            "textoMensaje"
+                        );
 
 
-                    document.getElementById(
-                        "numeroMensaje"
-                    ).textContent =
-                        `${mensajeActual + 1} / ${mensajes.length}`;
+                    const numeroMensaje =
+                        document.getElementById(
+                            "numeroMensaje"
+                        );
+
+
+                    if (textoMensaje) {
+
+                        textoMensaje.textContent =
+                            mensajes[mensajeActual];
+
+                    }
+
+
+                    if (numeroMensaje) {
+
+                        numeroMensaje.textContent =
+                            `${mensajeActual + 1} / ${mensajes.length}`;
+
+                    }
 
 
                     mensaje.style.opacity = "1";
@@ -389,10 +587,13 @@ document.addEventListener("DOMContentLoaded", () => {
                     mensaje.style.transform =
                         "translateY(0)";
 
+
                 }, 300);
 
             }
         );
+
+    }
 
 
     /* =========================================
@@ -405,70 +606,99 @@ document.addEventListener("DOMContentLoaded", () => {
         );
 
 
-    abrirCarta.addEventListener(
-        "click",
-        () => {
+    if (abrirCarta) {
 
-            const carta =
-                document.getElementById(
-                    "carta"
+        abrirCarta.addEventListener(
+            "click",
+            () => {
+
+                const carta =
+                    document.getElementById(
+                        "carta"
+                    );
+
+
+                if (!carta) {
+                    return;
+                }
+
+
+                carta.classList.toggle(
+                    "ocultar"
                 );
 
 
-            carta.classList.toggle(
-                "ocultar"
-            );
+                if (
+                    carta.classList.contains(
+                        "ocultar"
+                    )
+                ) {
 
+                    abrirCarta.innerHTML =
+                        "💌<small>Abrir carta</small>";
 
-            if (
-                carta.classList.contains(
-                    "ocultar"
-                )
-            ) {
+                } else {
 
-                abrirCarta.innerHTML =
-                    "💌<small>Abrir carta</small>";
+                    abrirCarta.innerHTML =
+                        "💌<small>Cerrar carta</small>";
 
-            } else {
-
-                abrirCarta.innerHTML =
-                    "💌<small>Cerrar carta</small>";
+                }
 
             }
+        );
 
-        }
-    );
+    }
 
 
     /* =========================================
        REGALO
     ========================================= */
 
-    document
-        .getElementById("regalo")
-        .addEventListener(
+    const regalo =
+        document.getElementById(
+            "regalo"
+        );
+
+
+    if (regalo) {
+
+        regalo.addEventListener(
             "click",
             () => {
 
-                document
-                    .getElementById(
+                const regaloMensaje =
+                    document.getElementById(
                         "regaloMensaje"
-                    )
-                    .classList.toggle(
+                    );
+
+
+                if (regaloMensaje) {
+
+                    regaloMensaje.classList.toggle(
                         "activo"
                     );
 
+                }
+
             }
         );
+
+    }
 
 
     /* =========================================
        RESPUESTA FINAL
     ========================================= */
 
-    document
-        .getElementById("respuestaBtn")
-        .addEventListener(
+    const respuestaBtn =
+        document.getElementById(
+            "respuestaBtn"
+        );
+
+
+    if (respuestaBtn) {
+
+        respuestaBtn.addEventListener(
             "click",
             () => {
 
@@ -478,23 +708,27 @@ document.addEventListener("DOMContentLoaded", () => {
                     );
 
 
-                respuesta.classList.add(
-                    "activo"
-                );
+                if (respuesta) {
+
+                    respuesta.classList.add(
+                        "activo"
+                    );
 
 
-                document.getElementById(
-                    "respuestaBtn"
-                ).style.display = "none";
+                    respuesta.scrollIntoView({
+                        behavior: "smooth",
+                        block: "center"
+                    });
+
+                }
 
 
-                respuesta.scrollIntoView({
-                    behavior: "smooth",
-                    block: "center"
-                });
+                respuestaBtn.style.display =
+                    "none";
 
             }
         );
 
+    }
 
 });
