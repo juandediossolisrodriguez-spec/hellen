@@ -1,10 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-    /* =========================================
-       CONTRASEÑA DEL ANIVERSARIO
-       30 DE JULIO DE 2025
-    ========================================= */
-
     const CONTRASENA = "30072025";
 
     const pantallaPrivada =
@@ -21,11 +16,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const errorPassword =
         document.getElementById("errorPassword");
-
-
-    /* =========================================
-       ELEMENTOS DE LA PÁGINA
-    ========================================= */
 
     const inicio =
         document.getElementById("inicio");
@@ -44,9 +34,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =========================================
-       DESBLOQUEAR
-       CONTRASEÑA → PÁGINA DIRECTAMENTE
-    ========================================= */
+       CONTRASEÑA
+    ========================================== */
 
     function desbloquear() {
 
@@ -59,16 +48,15 @@ document.addEventListener("DOMContentLoaded", () => {
             password.focus();
 
             return;
+
         }
 
 
         errorPassword.classList.remove("mostrar");
 
 
-        /* Transición de salida */
-
         pantallaPrivada.style.transition =
-            "opacity 0.8s ease, transform 0.8s ease";
+            "opacity .8s ease, transform .8s ease";
 
         pantallaPrivada.style.opacity = "0";
 
@@ -78,13 +66,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
         setTimeout(() => {
 
-            /* Ocultar contraseña */
-
             pantallaPrivada.style.display =
                 "none";
 
-
-            /* Mostrar página */
 
             paginaPrincipal.classList.remove(
                 "oculto"
@@ -93,8 +77,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
             /*
              * IMPORTANTE:
-             * Ocultamos la pantalla intermedia
-             * que tenía el botón "Entrar ❤️".
+             * después de la contraseña
+             * no mostramos la pantalla
+             * "Entrar ❤️".
              */
 
             if (inicio) {
@@ -104,24 +89,11 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
 
-            /*
-             * Aseguramos que la página
-             * comience arriba.
-             */
-
-            window.scrollTo({
-                top: 0,
-                behavior: "instant"
-            });
+            window.scrollTo(0, 0);
 
 
             /*
-             * Intentamos reproducir la música.
-             *
-             * Como esta función fue activada
-             * por una interacción del usuario,
-             * algunos navegadores permitirán
-             * la reproducción.
+             * Intentar reproducir música.
              */
 
             if (musica) {
@@ -130,13 +102,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 musica.play().catch(() => {
 
-                    /*
-                     * iPhone puede bloquear
-                     * la reproducción automática.
-                     *
-                     * En ese caso se podrá
-                     * iniciar mediante 🎵.
-                     */
+                    console.log(
+                        "El navegador bloqueó el autoplay."
+                    );
 
                 });
 
@@ -147,10 +115,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    /* =========================================
-       BOTÓN DE CONTRASEÑA
-    ========================================= */
-
     if (btnDesbloquear) {
 
         btnDesbloquear.addEventListener(
@@ -160,10 +124,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     }
 
-
-    /* =========================================
-       ENTER EN LA CONTRASEÑA
-    ========================================= */
 
     if (password) {
 
@@ -184,88 +144,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =========================================
-       BOTÓN "ENTRAR"
-       MANTENIDO POR COMPATIBILIDAD
-    ========================================= */
-
-    if (entrar) {
-
-        entrar.addEventListener(
-            "click",
-            () => {
-
-                if (musica) {
-
-                    musica.play().catch(() => {});
-
-                }
-
-
-                if (inicio) {
-
-                    inicio.style.transition =
-                        "opacity 0.8s ease, transform 0.8s ease";
-
-                    inicio.style.opacity = "0";
-
-                    inicio.style.transform =
-                        "scale(1.03)";
-
-
-                    setTimeout(() => {
-
-                        inicio.classList.add(
-                            "oculto"
-                        );
-
-                        window.scrollTo({
-                            top: 0,
-                            behavior: "instant"
-                        });
-
-                    }, 800);
-
-                }
-
-            }
-        );
-
-    }
-
-
-    /* =========================================
-       BOTÓN COMENZAR
-    ========================================= */
-
-    if (comenzar) {
-
-        comenzar.addEventListener(
-            "click",
-            () => {
-
-                const introduccion =
-                    document.querySelector(
-                        ".introduccion"
-                    );
-
-
-                if (introduccion) {
-
-                    introduccion.scrollIntoView({
-                        behavior: "smooth"
-                    });
-
-                }
-
-            }
-        );
-
-    }
-
-
-    /* =========================================
-       MÚSICA
-    ========================================= */
+       BOTÓN DE MÚSICA
+    ========================================== */
 
     if (btnMusica && musica) {
 
@@ -284,8 +164,9 @@ document.addEventListener("DOMContentLoaded", () => {
                         })
                         .catch(() => {
 
-                            btnMusica.textContent =
-                                "▶️";
+                            alert(
+                                "Toca nuevamente el botón 🎵 para reproducir la música."
+                            );
 
                         });
 
@@ -305,9 +186,79 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =========================================
+       BOTÓN ENTRAR
+       Por seguridad, si se utiliza,
+       también funciona.
+    ========================================== */
+
+    if (entrar) {
+
+        entrar.addEventListener(
+            "click",
+            () => {
+
+                if (musica) {
+
+                    musica.play().catch(() => {});
+
+                }
+
+                inicio.style.transition =
+                    "opacity .8s ease, transform .8s ease";
+
+                inicio.style.opacity = "0";
+
+                inicio.style.transform =
+                    "scale(1.03)";
+
+
+                setTimeout(() => {
+
+                    inicio.style.display = "none";
+
+                    window.scrollTo(0, 0);
+
+                }, 800);
+
+            }
+        );
+
+    }
+
+
+    /* =========================================
+       COMENZAR
+    ========================================== */
+
+    if (comenzar) {
+
+        comenzar.addEventListener(
+            "click",
+            () => {
+
+                const introduccion =
+                    document.querySelector(
+                        ".introduccion"
+                    );
+
+                if (introduccion) {
+
+                    introduccion.scrollIntoView({
+                        behavior: "smooth"
+                    });
+
+                }
+
+            }
+        );
+
+    }
+
+
+    /* =========================================
        CONTADOR
-       DESDE 30 DE JULIO DE 2025
-    ========================================= */
+       30/07/2025
+    ========================================== */
 
     const fechaInicio =
         new Date(
@@ -329,26 +280,21 @@ document.addEventListener("DOMContentLoaded", () => {
             ahora.getFullYear() -
             fechaInicio.getFullYear();
 
-
         let meses =
             ahora.getMonth() -
             fechaInicio.getMonth();
-
 
         let dias =
             ahora.getDate() -
             fechaInicio.getDate();
 
-
         let horas =
             ahora.getHours() -
             fechaInicio.getHours();
 
-
         let minutos =
             ahora.getMinutes() -
             fechaInicio.getMinutes();
-
 
         let segundos =
             ahora.getSeconds() -
@@ -358,7 +304,6 @@ document.addEventListener("DOMContentLoaded", () => {
         if (segundos < 0) {
 
             segundos += 60;
-
             minutos--;
 
         }
@@ -367,7 +312,6 @@ document.addEventListener("DOMContentLoaded", () => {
         if (minutos < 0) {
 
             minutos += 60;
-
             horas--;
 
         }
@@ -376,7 +320,6 @@ document.addEventListener("DOMContentLoaded", () => {
         if (horas < 0) {
 
             horas += 24;
-
             dias--;
 
         }
@@ -391,9 +334,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     0
                 ).getDate();
 
-
             dias += diasMesAnterior;
-
             meses--;
 
         }
@@ -402,83 +343,43 @@ document.addEventListener("DOMContentLoaded", () => {
         if (meses < 0) {
 
             meses += 12;
-
             anios--;
 
         }
 
 
-        const elementoAnios =
-            document.getElementById("anios");
+        const valores = {
 
-        const elementoMeses =
-            document.getElementById("meses");
+            anios: anios,
+            meses: meses,
+            dias: dias,
+            horas: horas,
+            minutos: minutos,
+            segundos: segundos
 
-        const elementoDias =
-            document.getElementById("dias");
-
-        const elementoHoras =
-            document.getElementById("horas");
-
-        const elementoMinutos =
-            document.getElementById("minutos");
-
-        const elementoSegundos =
-            document.getElementById("segundos");
+        };
 
 
-        if (elementoAnios) {
+        Object.keys(valores).forEach(
+            (id) => {
 
-            elementoAnios.textContent =
-                anios;
+                const elemento =
+                    document.getElementById(id);
 
-        }
+                if (elemento) {
 
+                    elemento.textContent =
+                        valores[id];
 
-        if (elementoMeses) {
+                }
 
-            elementoMeses.textContent =
-                meses;
-
-        }
-
-
-        if (elementoDias) {
-
-            elementoDias.textContent =
-                dias;
-
-        }
-
-
-        if (elementoHoras) {
-
-            elementoHoras.textContent =
-                horas;
-
-        }
-
-
-        if (elementoMinutos) {
-
-            elementoMinutos.textContent =
-                minutos;
-
-        }
-
-
-        if (elementoSegundos) {
-
-            elementoSegundos.textContent =
-                segundos;
-
-        }
+            }
+        );
 
     }
 
 
     actualizarContador();
-
 
     setInterval(
         actualizarContador,
@@ -488,7 +389,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     /* =========================================
        MENSAJES
-    ========================================= */
+    ========================================== */
 
     const mensajes = [
 
@@ -527,10 +428,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         "mensaje"
                     );
 
-
-                if (!mensaje) {
-                    return;
-                }
+                if (!mensaje) return;
 
 
                 mensaje.style.opacity = "0";
@@ -554,29 +452,28 @@ document.addEventListener("DOMContentLoaded", () => {
                     }
 
 
-                    const textoMensaje =
+                    const texto =
                         document.getElementById(
                             "textoMensaje"
                         );
 
-
-                    const numeroMensaje =
+                    const numero =
                         document.getElementById(
                             "numeroMensaje"
                         );
 
 
-                    if (textoMensaje) {
+                    if (texto) {
 
-                        textoMensaje.textContent =
-                            mensajes[mensajeActual];
+                        texto.textContent =
+                            mensajes[ mensajeActual ];
 
                     }
 
 
-                    if (numeroMensaje) {
+                    if (numero) {
 
-                        numeroMensaje.textContent =
+                        numero.textContent =
                             `${mensajeActual + 1} / ${mensajes.length}`;
 
                     }
@@ -598,7 +495,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     /* =========================================
        CARTA
-    ========================================= */
+    ========================================== */
 
     const abrirCarta =
         document.getElementById(
@@ -617,10 +514,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         "carta"
                     );
 
-
-                if (!carta) {
-                    return;
-                }
+                if (!carta) return;
 
 
                 carta.classList.toggle(
@@ -652,7 +546,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     /* =========================================
        REGALO
-    ========================================= */
+    ========================================== */
 
     const regalo =
         document.getElementById(
@@ -666,15 +560,15 @@ document.addEventListener("DOMContentLoaded", () => {
             "click",
             () => {
 
-                const regaloMensaje =
+                const mensaje =
                     document.getElementById(
                         "regaloMensaje"
                     );
 
 
-                if (regaloMensaje) {
+                if (mensaje) {
 
-                    regaloMensaje.classList.toggle(
+                    mensaje.classList.toggle(
                         "activo"
                     );
 
@@ -688,7 +582,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     /* =========================================
        RESPUESTA FINAL
-    ========================================= */
+    ========================================== */
 
     const respuestaBtn =
         document.getElementById(
